@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+  font-family: "Montserrat";
+  background: dodgerblue linear-gradient(45deg, darkgray, dodgerblue, deeppink) fixed;
+	color: white;
+  margin: 3rem;
+}
+input[type="text"] {
+    width: 40em;
+  font: inherit;
+}
+select{
+
+  font: inherit;
+}
+
+input {
+  padding: 0.4em 0.5em;
+  font: inherit;
+  margin-bottom: 0.9em;
+}
+
+button{
+  font: inherit;
+  margin-top: 1em;
+
+}
+
+select {
+
+  font: inherit;
+  margin-bottom: 0.9em;
+}
+
+.info{
+
+	color: white;
+}
+
+
