@@ -43,3 +43,5 @@ address is added to the config `Create Artist Collection` and `Add Artwork to co
   6. Click add Artwork and check in MetaMask if transaction succeeded. 
 
 
+# 4. Add Roalties and customize page 
+  1. You have to set the royalties on open-sea and rarible manually.
