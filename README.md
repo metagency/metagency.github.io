@@ -21,11 +21,11 @@ address is added to the config `Create Artist Collection` and `Add Artwork to co
   4. Make sure you use right Metagency Wallet.
   5. Input data: Note: `Make sure everything is correct. This CAN NOT be changed afterwards.`
       - Add creator Address.
-      - Add Artist name. Note: `No special characters or whitespaces allowed. E.g. Hervé Di Rosa -> HerveDiRosa`
+      - Add Artist name. Note: `No special characters or whitespaces allowed. E.g. Hervé Di Rosa -> HerveDiRosa`. This will be the Name of the Collection. The collection Name can be updated on OpenSea and Rarible.
       - Add First Sale Artist Percentage. Note: `90% of the first sale goes to the artist -> 9000, 75% -> 7500`
-      - Add Artist Percentage. This is the secondary sales fee that goes to the artist. `5% of the first sale goes to the artist -> 0050`
-      - Add Agency Percentage. This is the secondary sales fee that goes to the agency. `2.5% of the first sale goes to the agency -> 0025`
-     6. Click create Collection. The new Contract for the collection is now Deployed. 
+      - Add Artist Percentage. This is the secondary sales fee that goes to the artist. `5% of the secondary sale goes to the artist -> 0050`
+      - Add Agency Percentage. This is the secondary sales fee that goes to the agency. `2.5% of the secondary sale goes to the agency -> 0025`
+   6. Click create Collection. The new Contract for the collection is now Deployed. 
    7. MetaMask will ask you to confirm another transaction which adds the collection to the Metagency.
    8. Confirm this transaction and check in MetaMask if transaction succeeded. 
 
