@@ -1,6 +1,6 @@
 # Overview:
 
-Deploy Metagency Contract as to be deployed ONLY ONCE at the beginning. After it is deployed we need to store the address of the Metagency Contract. Only AFTER the 
+`Deploy Metagency Contract` has to be deployed ONLY ONCE in the beginning. After it is deployed we need to store the address of the Metagency Contract. Only AFTER the 
 address is added to the config `Create Artist Collection` and `Add Artwork to collection` can be done. Before you do the next steps take extreme caution as once contracts are deployed they can not be changed afterwards.
 
 # 1. Deploy Metagency Contract
