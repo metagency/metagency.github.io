@@ -75,9 +75,8 @@ button:hover:disabled{
 	display: flex;
 flex-direction: row;
     align-content: center;
-    #justify-content: space-between;
-	#margin: 2em;
-	align-items: center;
+    align-items: center;
+    margin-top: 0.5em;
 }
 
 .mintButton{
