@@ -1,7 +1,7 @@
-#Overview:
+# Overview:
 
 Deploy Metagency Contract as to be deployed ONLY ONCE at the beginning. After it is deployed we need to store the address of the Metagency Contract. Only AFTER the 
-address is added to the config `Create Artist Collection` and `Add Artwork to collection` can be done. 
+address is added to the config `Create Artist Collection` and `Add Artwork to collection` can be done. Before you do the next steps take extreme caution as once contracts are deployed they can not be changed afterwards.
 
 # 1. Deploy Metagency Contract
 
@@ -20,12 +20,12 @@ address is added to the config `Create Artist Collection` and `Add Artwork to co
   3. Connect through MetaMask.
   4. Make sure you use right Metagency Wallet.
   5. Input data: Note: `Make sure everything is correct. This CAN NOT be changed afterwards.`
-    - Add creator Address.
-    - Add Artist name. Note: `No special characters or whitespaces allowed. E.g. Hervé Di Rosa -> HerveDiRosa`
-    - Add First Sale Artist Percentage. Note: `90% of the first sale goes to the artist -> 9000, 75% -> 7500`
-    - Add Artist Percentage. This is the secondary sales fee that goes to the artist. `5% of the first sale goes to the artist -> 0050`
-    - Add Agency Percentage. This is the secondary sales fee that goes to the agency. `2.5% of the first sale goes to the agency -> 0025`
-   6. Click create Collection. The new Contract for the collection is now Deployed. 
+      - Add creator Address.
+      - Add Artist name. Note: `No special characters or whitespaces allowed. E.g. Hervé Di Rosa -> HerveDiRosa`
+      - Add First Sale Artist Percentage. Note: `90% of the first sale goes to the artist -> 9000, 75% -> 7500`
+      - Add Artist Percentage. This is the secondary sales fee that goes to the artist. `5% of the first sale goes to the artist -> 0050`
+      - Add Agency Percentage. This is the secondary sales fee that goes to the agency. `2.5% of the first sale goes to the agency -> 0025`
+     6. Click create Collection. The new Contract for the collection is now Deployed. 
    7. MetaMask will ask you to confirm another transaction which adds the collection to the Metagency.
    8. Confirm this transaction and check in MetaMask if transaction succeeded. 
 
@@ -36,10 +36,10 @@ address is added to the config `Create Artist Collection` and `Add Artwork to co
   3. Connect through MetaMask.
   4. Make sure you use right Metagency Wallet.
   5. Input data: Note: `Make sure everything is correct. This CAN NOT be changed afterwards.`
-    - Chosse collection you want to add the artwork to.
-    - Add token URI to a ipfs stored JSON.
-    - Add price. Note: `The price is set in ETH. 0.5 ETH -> 0.5`
-    - Add Number of copies: Note: `50 Copies -> 50`
+      - Chosse collection you want to add the artwork to.
+      - Add token URI to a ipfs stored JSON.
+      - Add price. Note: `The price is set in ETH. 0.5 ETH -> 0.5`
+      - Add Number of copies: Note: `50 Copies -> 50`
   6. Click add Artwork and check in MetaMask if transaction succeeded. 
 
 
