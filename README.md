@@ -15,7 +15,7 @@ address is added to the config `Create Artist Collection` and `Add Artwork to co
 
 # 2. Create Artist Collection
 
-  1. Go to https://metagency.github.io/deploy_metagency.html
+  1. Go to https://metagency.github.io/create_collection.html
   2. Set chain to Mainnet.
   3. Connect through MetaMask.
   4. Make sure you use right Metagency Wallet.
