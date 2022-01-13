@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+  font-family: "Montserrat";
+  margin: 3rem;
+}
+
+.info{
+
+	color: black;
+}
+
+button {
+	padding: 0.5em;
+	border-color: black;
+	background: white;
+	border-radius: 0.4em;
+	width: 5em;
+	font-size: 1em;
+}
+
+button:hover {
+	padding: 0.5em;
+	border-color: white;
+	color: white;
+	background: black;
+	border-radius: 0.4em;
+	width: 5em;
+	cursor: pointer;
+}
+
+button:disabled{
+	border-color: lightgray;
+	color: lightgray;
+	cursor: default;
+}
+
+button:hover:disabled{
+	border-color: lightgray;
+	background: white;
+	color: lightgray;
+}
+.item{
+	width: 20em;
+	margin-bottom: 6em;
+	display: flex;
+    	flex-wrap: nowrap;
+    	flex-direction: column;
+}
+
+
+#tokens {
+
+    #display: flex;
+    #flex-direction: row;
+    #align-items: center;
+    #flex-wrap: nowrap;
+    #justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.bottomElement{
+
+	display: flex;
+flex-direction: row;
+    align-content: center;
+    #justify-content: space-between;
+	#margin: 2em;
+	align-items: center;
+}
+
+.mintButton{
+	margin-right: 1em;
+    	margin-left: auto;
+	font-size 4em;
+
+}
+
+.nameDiv{
+
+	font-weight: bold;
+	margin-bottom: 0.3em;
+	margin-top: 2em;
+	text-transform: uppercase;
+}
+
+.price{
+	font-size: 1.5em;
+	align-self: flex-end;
+	font-weight: bold;
+}
+
+.ETH {
+	margin-left: 0.4em;
+	align-self: flex-end;
+	margin-bottom: 0.1em;
+}
+
+.imgDiv {
+
+text-align: center;
+
+}
+
+img {
+
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid black;
+}
+
+.available {
+
+	font-size: 0.8em;
+}
+
+.connectButton{
+
+	width: 10em;
+	float: right;
+}
+
+.artistName{
+    	margin-left: 2em;
+	display: flex;
+	justify-content: center;
+	font-size: 5em;
+	margin-bottom: 0.5em;
+}
+
+.artistFirstName{
+ 	margin-right: 0.5em;
+	font-weight: 200;
+}
+.artistLastName{
+
+	font-weight: 1000;
+}
