@@ -66,7 +66,7 @@ async function connectAccount(){
 }
 
 function wrongChain(){
-	info.innerHTML = "Please change Chain to " + config.chainName + "!";
+	info.innerHTML = "Please change Chain to " + config.chainName + " in order to see the items for sale!";
 	connectButton.style.visibility = 'hidden';
         artistImage.style.visibility = 'hidden';
 	console.log('wrong Chain')
@@ -118,8 +118,8 @@ if (window.ethereum && ethereum.isMetaMask){
 	);
 	connectAccount();
 } else{
-	console.log('Please Install MetaMask')
-	info.innerHTML = 'Please install MetaMask!';
+	console.log('Please Install MetaMask to see the items for sale.')
+	info.innerHTML = 'Please install MetaMask to see the items for sale!';
 	connectButton.style.visibility = 'hidden';
         artistImage.style.visibility = 'hidden';
 }
