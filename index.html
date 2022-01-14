@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<button class="connectButton" visibility='hidden' onclick=connectAccount()>Connect MetaMask</button>
 <div class='infoDiv'><p><span class="info"></span></p></div>
 
 <!--<div class=artistName> <p class="artistFirstName">Herv&eacute; </p>  <p class="artistLastName"> Di Rosa </p></div>-->
 <div class='artistImage'><img class='imgArtist' src='./herve.jpeg' /></div>
+<div class='connectButtonDiv'><button class="connectButton" visibility='hidden' onclick=connectAccount()>Connect MetaMask</button></div>
 <div id="tokens" />
 
 <script type="text/javascript">
@@ -89,7 +89,11 @@ function accountsChanged(){
 
 
 if (window.ethereum && ethereum.isMetaMask){
-
+	console.log('fetching collections')
+	initEverything().then(() => {
+	  getAvailableTokens();
+	});
+	collectionFetched = true;
 	ethereum.on('disconnect', (error) => window.location.reload());
 	ethereum.on('chainChanged', (_chainId) => window.location.reload());
 	ethereum.on('accountsChanged', (_) => accountsChanged);
