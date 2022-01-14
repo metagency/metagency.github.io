@@ -89,10 +89,12 @@ function accountsChanged(){
 
 
 if (window.ethereum && ethereum.isMetaMask){
-	console.log('fetching collections')
-	initEverything().then(() => {
-	  getAvailableTokens();
-	});
+	if (! collectionFetched ) {
+		console.log('fetching collections')
+		initEverything().then(() => {
+		  getAvailableTokens();
+		});
+	}
 	collectionFetched = true;
 	ethereum.on('disconnect', (error) => window.location.reload());
 	ethereum.on('chainChanged', (_chainId) => window.location.reload());
@@ -104,14 +106,11 @@ if (window.ethereum && ethereum.isMetaMask){
 	    }
 
 
-	if (connectInfo.chainId == config.chain ) {
-
+	if (! collectionFetched ) {
 		console.log('fetching collections')
 		initEverything().then(() => {
 		  getAvailableTokens();
 		});
-		collectionFetched = true;
-
 	}
 
 
