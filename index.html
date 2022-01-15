@@ -4,6 +4,7 @@
 <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0/dist/web3.min.js"></script>
 <script src="config.js" ></script>
+<script src="index.js" ></script>
 <link rel="stylesheet" href="./style_mintpage.css">
 
 </head>
@@ -11,8 +12,6 @@
 
 <div class='infoDiv'><p><span class="info"></span></p></div>
 
-<!--<div class=artistName> <p class="artistFirstName">Herv&eacute; </p>  <p class="artistLastName"> Di Rosa </p></div>-->
-<div class='artistImage'><img class='imgArtist' src='./herve.jpeg' /></div>
 <div class='connectButtonDiv'><button class="connectButton" visibility='hidden' onclick=connectAccount()>Connect MetaMask</button></div>
 <div id="tokens" />
 
@@ -26,7 +25,6 @@ const metagencyForSaleAddress = config.saleContractAddress;
 var tokensDiv = document.getElementById("tokens");
 const connectButton = document.querySelector('.connectButton');
 const info = document.querySelector('.info');
-const artistImage = document.querySelector('.artistImage');
 var collectionFetched = false;
 async function connectAccount(){
 	await ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
@@ -68,7 +66,6 @@ async function connectAccount(){
 function wrongChain(){
 	info.innerHTML = "Please change Chain to " + config.chainName + " in order to see the items for sale!";
 	connectButton.style.visibility = 'hidden';
-        artistImage.style.visibility = 'hidden';
 	console.log('wrong Chain')
 }
 
@@ -122,9 +119,15 @@ if (window.ethereum && ethereum.isMetaMask){
 	connectAccount();
 } else{
 	console.log('Please Install MetaMask to see the items for sale.')
-	info.innerHTML = 'Please install MetaMask to see the items for sale!';
+	info.innerHTML = 'Please install MetaMask to buy items!';
 	connectButton.style.visibility = 'hidden';
-        artistImage.style.visibility = 'hidden';
+
+	var web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
+
+	initEverything().then(() => {
+	  getAvailableTokens();
+	});
+
 }
 
 
@@ -149,7 +152,6 @@ async function initEverything() {
   });
 
 
-
 }
 
 function ipfsToHttpsUrl(tokenURI) {
@@ -171,9 +173,9 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
   const priceETH = web3.utils.fromWei(price);
   var div = document.createElement('div');
   div.setAttribute("class", "item");
-
+  const artistName = description.toUpperCase().split('-')[0]
   var disabled = "";
-  if (availableItems == 0){ disabled = "disabled" } else{ disabled = ""}
+  if (availableItems == 0 || window.ethereum == null){ disabled = "disabled" } else{ disabled = ""}
   var button  = `<button ${disabled} onclick="buyToken('${collection}', ${tokenId}, ${price})">MINT</button>`
   div.innerHTML = `<div class='imgDiv'><img class='imgNFT' src="${image}"/></div>`
   div.innerHTML += `<div class="nameDiv">${name}</div>`
@@ -192,7 +194,7 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
   //div.innerHTML = `${name}, ${description}, <img height="80" src="${image}"/>, ${priceETH} ETH, ${availableItems} / ${totalItemsForSale} <button onclick="buyToken('${collection}', ${tokenId}, ${price})">MINT</button> <br>`;
 
 
-  return div;
+  return [ div, artistName]
 }
 
 async function buyToken(collectionAddress, toBuyTokenId, priceInWei) {
@@ -207,10 +209,11 @@ async function getTotalNumberOfArtworks() {
 }
 
 async function getAvailableTokens() {
+  var artistNames = []
   const totalNumberOfArtworks = await getTotalNumberOfArtworks();
   const totalSupply = await MetagencyForSale.methods
     .totalSupply().call();
-  for (var tokenId = 0; tokenId < totalSupply; tokenId++) {
+  for (var tokenId = totalSupply-1; tokenId >= 0; tokenId--) {
     /* TODO: later check collection */
     const tokenURI = await MetagencyForSale.methods
       .tokenURI(tokenId).call();
@@ -221,8 +224,23 @@ async function getAvailableTokens() {
       .getAvailableNumberOfArtworks(tokenId).call();
     const collection = await MetagencyForSale.methods
       .getCollectionOfTokenId(tokenId).call();
-    const tokenDiv = await getTokenDiv(
+    const res = await getTokenDiv(
         collection, tokenId, tokenURI, price, availableItems, totalItemsForSale);
+    tokenDiv = res[0]
+    artistName = res[1]
+    if (! artistNames.includes(artistName)){
+        artistNames.push(artistName)
+        var artistDiv = document.createElement('div');
+        artistDiv.setAttribute("class", "artistName");
+        nameSplit =  artistName.split(' ')
+
+        firstName = nameSplit[0]
+	lastName = nameSplit.slice(1).join(' ')
+	artistDiv.innerHTML += `<div class='artistFirstName'> ${firstName} </div>`
+	artistDiv.innerHTML += `<div class='artistLastName'> ${lastName} </div>`
+        tokensDiv.appendChild(artistDiv);
+    }
+
     tokensDiv.appendChild(tokenDiv);
   }
 }
