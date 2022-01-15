@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+<script src="https://unpkg.com/@metamask/etect-provider/dist/detect-provider.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0/dist/web3.min.js"></script>
 <script src="config.js" ></script>
 <script src="index.js" ></script>
@@ -16,7 +17,7 @@
 <div id="tokens" />
 
 <script type="text/javascript">
-var web3 = new Web3(window.ethereum);
+var web3 = null;
 var collections = {};
 var MetagencyForSale = null;
 
@@ -27,8 +28,8 @@ const connectButton = document.querySelector('.connectButton');
 const info = document.querySelector('.info');
 var collectionFetched = false;
 async function connectAccount(){
-	await ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
-	    if (!checkChain(ethereum.chainId)){
+	await window.ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
+	    if (!checkChain(window.ethereum.chainId)){
 		wrongChain()
 	    } else {
 		if (accounts){
@@ -36,7 +37,7 @@ async function connectAccount(){
 		    console.log('connected')
 		    connectButton.style.visibility = 'hidden';
 
-			if (ethereum.chainId == config.chain && ! collectionFetched ) {
+			if (window.ethereum.chainId == config.chain && ! collectionFetched ) {
 
 				console.log('fetching collections')
 				initEverything().then(() => {
@@ -85,7 +86,23 @@ function accountsChanged(){
 
 
 
-if (window.ethereum && ethereum.isMetaMask){
+  if (window.ethereum) {
+      handleEthereum();
+    } else {
+      window.addEventListener('ethereum#initialized', handleEthereum, {
+        once: true,
+      });
+
+      // If the event is not dispatched by the end of the timeout,
+      // the user probably doesn't have MetaMask installed.
+      setTimeout(handleEthereum, 3000); // 3 seconds
+    }
+
+    async function handleEthereum() {
+      if (window.ethereum && window.ethereum.isMetaMask) {
+
+
+        web3 = new Web3(window.ethereum);
 	if (! collectionFetched ) {
 		console.log('fetching collections')
 		initEverything().then(() => {
@@ -93,10 +110,10 @@ if (window.ethereum && ethereum.isMetaMask){
 		});
 	}
 	collectionFetched = true;
-	ethereum.on('disconnect', (error) => window.location.reload());
-	ethereum.on('chainChanged', (_chainId) => window.location.reload());
-	ethereum.on('accountsChanged', (_) => accountsChanged);
-	ethereum.on('connect', (connectInfo) => {
+	window.ethereum.on('disconnect', (error) => window.location.reload());
+	window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+	window.ethereum.on('accountsChanged', (_) => accountsChanged);
+	window.ethereum.on('connect', (connectInfo) => {
 	    // is on correct chain
 	    if (!checkChain(connectInfo.chainId)){
 		wrongChain()
@@ -110,25 +127,30 @@ if (window.ethereum && ethereum.isMetaMask){
 		});
 	}
 
-
 	});
 
-	ethereum.on('message', (message) =>
+	window.ethereum.on('message', (message) =>
 	    console.log(message)
 	);
 	connectAccount();
-} else{
+
+        // Access the decentralized web!
+      } else {
+
 	console.log('Please Install MetaMask to see the items for sale.')
 	info.innerHTML = 'Please install MetaMask to buy items!';
 	connectButton.style.visibility = 'hidden';
 
-	var web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
+	web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
 
 	initEverything().then(() => {
 	  getAvailableTokens();
 	});
 
-}
+      }
+    }
+
+
 
 
 async function initEverything() {
@@ -198,8 +220,9 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
 }
 
 async function buyToken(collectionAddress, toBuyTokenId, priceInWei) {
+
   await collections[collectionAddress].methods.buyToken(toBuyTokenId)
-      .send({from: ethereum.selectedAddress, value: priceInWei});
+      .send({from: window.ethereum.selectedAddress, value: priceInWei});
 }
 
 async function getTotalNumberOfArtworks() {

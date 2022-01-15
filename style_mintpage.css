@@ -94,6 +94,7 @@ flex-direction: row;
 	margin-bottom: 0.3em;
 	margin-top: 2em;
 	text-transform: uppercase;
+white-space:nowrap;
 }
 
 .price{
@@ -137,7 +138,7 @@ text-align: center;
     	justify-content: center;
     	font-size: 3em;
     	margin-bottom: 1.5em;
-
+ white-space: nowrap;
 
 }
 
