@@ -86,7 +86,7 @@ function accountsChanged(){
 
 
 
-
+ window.addEventListener("load", function(){
   if (window.ethereum) {
       handleEthereum();
     } else {
@@ -96,9 +96,10 @@ function accountsChanged(){
 
       // If the event is not dispatched by the end of the timeout,
       // the user probably doesn't have MetaMask installed.
-      setTimeout(handleEthereum, 50); // 3 seconds
+      setTimeout(handleEthereum, 300); // 3 seconds
     }
 
+});
     async function handleEthereum() {
       if (window.ethereum && window.ethereum.isMetaMask) {
 
