@@ -139,7 +139,7 @@
         let collectionAbi = collectionContractJson['abi'];
         let collectionBytecode = collectionContractJson['bytecode'];
         const collectionContract = new web3.eth.Contract(collectionAbi);
-
+ 	web3.eth.getGasPrice(function(e, gp) {alert(`Estimated gas price with gas fee of ${parseInt(gp * 1.1 *0.000000001) }` + ' is '  +  3680772 * web3.utils.fromWei(gp) * 1.2) });
 	collectionContract.deploy({
             data: collectionBytecode,
             arguments: [creatorInput.value, config.saleContractAddress, nameInput.value, firstSaleCreatorPercentage.value, creatorPercentageInput.value, agencyPercentageInput.value]
