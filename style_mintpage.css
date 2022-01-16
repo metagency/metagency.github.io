@@ -86,7 +86,7 @@ flex-direction: row;
 	width: 5em;
 
 }
-.mintButtonT{
+#.mintButtonT{
 	color: white;
     	font-weight: 900;
         text-shadow: 0 0 0.05em black, 0 0 0.05em black, 0 0 0.05em black, 0 0 0.05em black;
