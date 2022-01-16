@@ -54,13 +54,13 @@ async function connectAccount(){
 
 	    }
 	}).catch((err) => {
+	    alert(err.message)
 	    if (err.code === 4001) {
 	    // EIP-1193 userRejectedRequest error
 	    // If this happens, the user rejected the connection request.
 		console.error('User rejected connection request!');
 	    } else {
-		console.error(err);
-		alert(err.message)
+	    alert(JSON.stringify(err))
 	    }
            
 	});
