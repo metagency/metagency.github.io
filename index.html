@@ -141,7 +141,7 @@ function accountsChanged(){
 
 	connectButton.style.visibility = 'hidden';
 	console.log('Please Install MetaMask to see the items for sale.')
-	info.innerHTML = `<a href='https://metamask.app.link/dapp/metagency.github.io'> Please use MetaMask!</a>`;
+	info.innerHTML = `<a class='deeplink' href='https://metamask.app.link/dapp/metagency.github.io'> Open with  MetaMask!</a>`;
 
 	web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
 
@@ -200,7 +200,7 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
   const artistName = description.toUpperCase().split('-')[0]
   var disabled = "";
   if (availableItems == 0 || window.ethereum == null){ disabled = "disabled" } else{ disabled = ""}
-  var button  = `<button ${disabled} onclick="buyToken('${collection}', ${tokenId}, ${price})">MINT</button>`
+  var button  = `<button ${disabled} onclick="buyToken('${collection}', ${tokenId}, ${price})" class='mintButtonT'>MINT</button>`
   div.innerHTML = `<div class='imgDiv'><img class='imgNFT' src="${image}"/></div>`
   div.innerHTML += `<div class="nameDiv">${name}</div>`
   if (description){

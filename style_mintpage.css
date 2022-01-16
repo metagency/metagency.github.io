@@ -10,7 +10,6 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-font-size: 1.2em;
 text-align: center;
 }
 
@@ -26,7 +25,7 @@ button {
 	border-color: black;
 	background: white;
 	border-radius: 0.4em;
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 button:hover {
@@ -86,6 +85,12 @@ flex-direction: row;
 	font-size 4em;
 	width: 5em;
 
+}
+.mintButtonT{
+	color: white;
+    	font-weight: 900;
+        text-shadow: 0 0 0.05em black, 0 0 0.05em black, 0 0 0.05em black, 0 0 0.05em black;
+	letter-spacing: 0.15em;
 }
 
 .nameDiv{
@@ -175,4 +180,22 @@ text-align: center;
   justify-content: center;
   margin-bottom: 4em;
 }
+.deeplink {
+	padding: 0.5em;
+	border-color: black;
+	background: white;
+	border-radius: 0.4em;
+	color: black;
+    	border: 2px solid black;
+	text-decoration: none;
+}
 
+.deeplink:hover {
+	padding: 0.5em;
+	border-color: white;
+	color: white;
+	background: black;
+	border-radius: 0.4em;
+	cursor: pointer;
+	text-decoration: none;
+}
