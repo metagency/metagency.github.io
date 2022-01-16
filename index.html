@@ -54,7 +54,7 @@ async function connectAccount(){
 
 	    }
 	}).catch((err) => {
-	    if (err.code === 4001) {
+	    if (err.code === 4001 || err.message == 'User rejected account access') {
 	    // EIP-1193 userRejectedRequest error
 	    // If this happens, the user rejected the connection request.
 		console.error('User rejected connection request!');
