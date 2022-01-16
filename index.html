@@ -27,6 +27,11 @@ var tokensDiv = document.getElementById("tokens");
 const connectButton = document.querySelector('.connectButton');
 const info = document.querySelector('.info');
 var collectionFetched = false;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	alert('Please use Desktop Browser/App for smooth experience.')
+}
+
+
 async function connectAccount(){
 	await window.ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
 	    if (!checkChain(window.ethereum.chainId)){
@@ -141,7 +146,7 @@ function accountsChanged(){
 
 	connectButton.style.visibility = 'hidden';
 	console.log('Please Install MetaMask to see the items for sale.')
-	info.innerHTML = `<a href='metamask.app.link/dapp/metagency.github.io' target="_blank" rel="noopener noreferrer" class='deeplink'> Open with  MetaMask!</a>`;
+	info.innerHTML = `<a href='https://metamask.app.link/dapp/metagency.github.io'class='deeplink'> Open with  MetaMask!</a>`;
 
 	web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
 
