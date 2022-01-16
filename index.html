@@ -97,7 +97,7 @@ function accountsChanged(){
 
       // If the event is not dispatched by the end of the timeout,
       // the user probably doesn't have MetaMask installed.
-      setTimeout(handleEthereum, 3000); // 3 seconds
+      setTimeout(handleEthereum, 50); // 3 seconds
     }
 
     async function handleEthereum() {
@@ -139,9 +139,9 @@ function accountsChanged(){
         // Access the decentralized web!
       } else {
 
-	console.log('Please Install MetaMask to see the items for sale.')
-	info.innerHTML = 'Please install MetaMask to buy items!';
 	connectButton.style.visibility = 'hidden';
+	console.log('Please Install MetaMask to see the items for sale.')
+	info.innerHTML = `<a href='https://metamask.app.link/dapp/metagency.github.io'> Please use MetaMask!</a>`;
 
 	web3 = new Web3('https://mainnet.infura.io/v3/2acd713b236441a0bdc47f7b7272d4b6');
 
