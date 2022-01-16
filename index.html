@@ -220,7 +220,6 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
 }
 
 async function buyToken(collectionAddress, toBuyTokenId, priceInWei) {
-  alert(window.ethereum.selectedAddress)
   receipt = await collections[collectionAddress].methods.buyToken(toBuyTokenId)
       .send({from: window.ethereum.selectedAddress, value: priceInWei}, (error) =>{
 	if (error.code == -32000){
