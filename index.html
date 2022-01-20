@@ -227,14 +227,20 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
 }
 
 async function buyToken(collectionAddress, toBuyTokenId, priceInWei) {
-  receipt = await collections[collectionAddress].methods.buyToken(toBuyTokenId)
-      .send({from: window.ethereum.selectedAddress, value: priceInWei}, (error) =>{
-	if (error.code == -32000){
-		alert('Insufficient funds for transfer!');
-	}else{
-		alert('Please connect a Wallet!')
-	}
-});
+  balance = await web3.eth.getBalance(ethereum.selectedAddress)
+  if (balance < priceInWei){
+     alert('Insufficient funds for transfer!')
+  }else{
+
+	  receipt = await collections[collectionAddress].methods.buyToken(toBuyTokenId)
+	      .send({from: window.ethereum.selectedAddress, value: priceInWei}, (error) =>{
+		if (error.code == -32000){
+			alert('Insufficient funds for transfer!');
+		}else{
+			alert('Please connect a Wallet!')
+		}
+	});
+};
 }
 
 async function getTotalNumberOfArtworks() {
