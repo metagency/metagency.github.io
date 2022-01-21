@@ -5,7 +5,6 @@
 
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0/dist/web3.min.js"></script>
 <script src="config.js" ></script>
-<script src="index.js" ></script>
 <link rel="stylesheet" href="./style_mintpage.css">
 
 </head>
@@ -198,6 +197,7 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
   const text = await response.json();
   const image = ipfsToHttpsUrl(text.image);
   const name = text.name;
+  console.log(name)
   const description = text.description;
   const priceETH = web3.utils.fromWei(price);
   var div = document.createElement('div');
@@ -269,12 +269,17 @@ async function getAvailableTokens() {
         collection, tokenId, tokenURI, price, availableItems, totalItemsForSale);
     tokenDiv = res[0]
     artistName = res[1]
+    if (artistName.includes('BY')){
+        artistName = artistName.split('BY')[1].substring(1)
+    }
     if (! artistNames.includes(artistName)){
-        artistNames.push(artistName)
         var artistDiv = document.createElement('div');
         artistDiv.setAttribute("class", "artistName");
-        nameSplit =  artistName.split(' ')
+	
 
+        artistNames.push(artistName)
+        nameSplit =  artistName.split(' ')
+	console.log(nameSplit)	
         firstName = nameSplit[0]
 	lastName = nameSplit.slice(1).join(' ')
 	artistDiv.innerHTML += `<div class='artistFirstName'> ${firstName} </div>`
