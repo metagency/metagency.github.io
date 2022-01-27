@@ -216,7 +216,7 @@ async function getTokenDiv(collection, tokenId, tokenURI, price, availableItems,
   if (availableItems == 0){
   	div.innerHTML += `<div class="available">SOLD OUT</div>`
   }else{
-  	div.innerHTML += `<div class="available">${availableItems} / ${totalItemsForSale} </div>`
+  	div.innerHTML += `<div class="available">${totalItemsForSale-availableItems} / ${totalItemsForSale} </div>`
   }
   div.innerHTML += `<div class='bottomElement'><div class='price'>${priceETH}</div><div class='ETH'>ETH</div><div class='mintButton'>${button}</div></div> `
 
